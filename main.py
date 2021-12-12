@@ -38,10 +38,16 @@ def find_email(text):
 
 def address(text):
     # TODO address search not working.Fix it
-    m = re.search("Address(.+?)", text)
-    if m:
-        found = m.group(1)
-        return found
+    # print(text.splitlines())
+    lines = text.splitlines()
+    for line in lines:
+        if re.search("address", line, re.IGNORECASE):
+            return line.replace("Address", "")
+    return "No Address Provided"
+    # m = re.search("Address(.+?)", text)
+    # if m:
+    # found = m.group(1)
+    # return found
 
 
 def phone_number(text):
@@ -49,7 +55,9 @@ def phone_number(text):
     match = re.search(
         r"((\+*)((0[ -]*)*|((91 )*))((\d{12})+|(\d{10})+))|\d{5}([- ]*)\d{6}", text
     )
-    return match.group(0)
+    if match:
+        return match.group(0)
+    return "No Phone number provided"
 
 
 # initialize matcher with a vocab
