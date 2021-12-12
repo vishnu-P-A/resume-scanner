@@ -73,6 +73,7 @@ def read_and_process_resume(file_path):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 1:
+    if len(sys.argv) < 2:
         print("No input file passed")
-    read_and_process_resume(sys.argv[1])
+    else:
+        read_and_process_resume(sys.argv[1])
